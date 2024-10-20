@@ -1,0 +1,256 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'EB Garamond', serif;
+    background-color: #0a0a0a; /* Deep black background */
+    color: #d4d4d4; /* Soft grey text */
+    line-height: 1.8;
+    background-image: url('images/mist.png'); /* Optional background image */
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Subtle text shadow for all text */
+    animation: mistMove 15s infinite linear;
+    cursor: url('images/Skeleton_Cursor.png') 16 16, pointer;
+}
+
+@keyframes mistMove {
+    0% { background-position: 0 0; }
+    100% { background-position: -1000px 0; }
+}
+
+/* Main container */
+#container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+    background-image: url('images/parchment.png'); /* Add a parchment texture */
+    background-size: cover; /* Make sure the background image covers the entire container */
+    background-position: center;
+    background-color: rgba(10, 10, 10, 0.9); /* Dark overlay to ensure text is readable */
+    border: 2px solid #3e3e3e; /* Subtle border to give the parchment a worn feel */
+    border-radius: 15px; /* Slightly rounded corners to soften the edges */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Dark shadow for depth */
+    text-shadow: none; /* Disable text shadows if it interferes with readability */
+    animation: flicker 2s infinite; /* Flicker animation */
+
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.95; }
+    100% { opacity: 1; }
+}
+
+
+/* Header styling */
+header h1 {
+    font-family: 'Cinzel', serif; /* Cleaner and more readable */
+    color: #ff3333; /* Blood-red color */
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3.5rem; /* Slightly larger title */
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 10px rgba(255, 0, 0, 0.7); /* Subtle glowing red shadow */
+    animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header p {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #d4d4d4;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Section headers */
+h2 {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #cfcfcf;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+/* Paragraph styling */
+p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-indent: 20px;
+    color: #d4d4d4;
+}
+
+/* List styling for the agenda */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #d4d4d4; /* Neutral grey for agenda items */
+}
+
+/* Hover effect for list items */
+ul li:hover {
+    color: #ff6666; /* Slightly brighter red on hover */
+    text-shadow: 0 0 10px #ff0000;
+}
+
+ul li::before {
+    content: '⚔'; /* Gothic symbol */
+    margin-right: 10px;
+    color: #ff0000; /* Deep blood-red symbol */
+}
+
+/* Dress code section */
+#dress-code {
+    font-style: italic;
+    color: #d4d4d4;
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for dress code section */
+#dress-code :hover {
+    color: #8f1698; /* New color on hover */
+}
+
+/* Footer styling */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #999;
+    font-weight: bold;
+}
+
+/* Malachar's signature in green */
+footer strong {
+    display: block;
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 1.5rem;
+    color: #821889;
+    text-shadow: 0 0 10px #821889, 0 0 20px #821889, 0 0 30px #821889;
+    margin-top: 10px;
+}
+
+/* Hover effect for Malachar's signature */
+footer strong:hover {
+    color: #00ff00; /* Bright green on hover */
+    text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+}
+
+/* Glow effect for Malachar's signature */
+.glow {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px red, 0 0 40px red;
+    animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+    }
+    100% {
+        text-shadow: 0 0 20px red, 0 0 30px red, 0 0 50px red, 0 0 70px red;
+    }
+}
+
+/* Scroll reveal effect */
+section {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 1s ease-in-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+audio {
+    display: none; /* This hides the audio player from view */
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+    body {
+        font-size: 90%;
+        padding: 10px;
+    }
+
+    #container {
+        padding: 30px;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    footer {
+        font-size: 1rem;
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+    body {
+        font-size: 80%;
+        padding: 5px;
+    }
+
+    #container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    ul li {
+        font-size: 1rem;
+    }
+
+    footer {
+        font-size: 1rem;
+    }
+}
