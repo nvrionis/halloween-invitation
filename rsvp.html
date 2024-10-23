@@ -33,11 +33,11 @@
         
         <!-- Instructions for the form -->
         <section>
-            <p class="blood-text">You have been summoned. Select your name and seal your acceptance in blood.</p>
+            <p class="blood-text">You have been summoned.</p>
         </section>
 
         <form id="rsvp-form">
-            <label for="character-name" class="blood-text">Your Character's Name:</label>
+            <label for="character-name" class="blood-text">Your Character:</label>
             <select id="character-name" name="character-name" class="blood-text" required>
                 <option value="" disabled selected>Select your character</option>
                 <<option value="dracula">Count Dracula</option>
@@ -68,14 +68,14 @@
                 <!-- Other options... -->
             </select>
         
-            <label for="signature" class="blood-text">Your Signature:</label>
+            
             
             <!-- Signature Container -->
             <div id="signature-container" class="signature-hidden">
                 <img id="signature-img" src="images/blood_spatter.png" alt="Signature" />
             </div>
         
-            <button type="submit" id="acceptance-button" class="blood-text">Seal With Blood</button>
+            <button type="submit" id="acceptance-button" class="blood-text">Sign</button>
         </form>
  
 

@@ -134,13 +134,20 @@ select {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
 }
 
-/* Hover effect for select */
-select:hover {
-    background-color: #990000; /* Brighter red on hover */
-    color: #ffdddd; /* Lighter text color */
+/* Ensure select dropdown doesn't overflow */
+select {
+    max-width: 100%; /* Ensure select doesn't overflow on smaller screens */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text is too long */
 }
 
-/* Style for the select options */
+/* Limit height for dropdown and allow scrolling */
+select {
+    max-height: 200px; /* Limit height */
+    overflow-y: auto;  /* Add vertical scrolling if options are too many */
+}
+
 select option {
     background-color: #660000;
     color: #ffcccc;
@@ -153,7 +160,6 @@ form select {
     width: calc(100% - 20px); /* Adjust the width to account for padding */
     margin-bottom: 20px;
 }
-
 
 /* Signature container styling */
 #signature-container {
@@ -187,17 +193,52 @@ form select {
     display: none;
 }
 
-/* Mobile-friendly responsiveness */
+/* Mobile-friendly form adjustments */
 @media only screen and (max-width: 600px) {
-    #signature-container {
-        width: 180px;
-        height: 180px;
+    body {
+        padding: 20px; /* Reduce padding on small screens */
     }
-    #signature-container.blood {
-        background-size: 180px 180px; /* Adjust background size for smaller screens */
+
+    #rsvp-form {
+        padding: 10px;
+        gap: 10px; /* Less gap between form fields */
+    }
+
+    select, input, button {
+        font-size: 1rem; /* Reduce font size */
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+
+    /* Ensure select doesn't overflow */
+    select {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    /* Force the select dropdown options to stay within screen limits */
+    select {
+        position: relative;
+        z-index: 9999;
+    }
+
+    /* Set a maximum height and allow scrolling within dropdown */
+    select option {
+        max-height: 150px; /* Restrict height of select box */
+        overflow-y: auto;
+    }
+    
+    /* If select dropdown extends beyond the screen, allow scrolling */
+    select {
+        -webkit-overflow-scrolling: touch; /* Ensure smooth scrolling */
     }
 }
 
+/* Mobile-friendly for very small screens */
 @media only screen and (max-width: 400px) {
     #signature-container {
         width: 120px;
@@ -205,6 +246,12 @@ form select {
     }
     #signature-container.blood {
         background-size: 120px 120px; /* Further adjustment for very small screens */
+    }
+
+    /* Signature image responsiveness */
+    #signature-img {
+        width: 50px;
+        height: 50px;
     }
 }
 
