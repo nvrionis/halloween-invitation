@@ -47,25 +47,15 @@ body {
     100% { opacity: 1; }
 }
 
-/* Position the skulls absolutely for movement */
+/* Skull styling */
 .skull {
-    position: fixed; /* Fixed position so it stays visible while scrolling */
-    width: 50px; /* Adjust size */
-    height: auto;
+    position: fixed;
+    width: 50px;
+    top: 10%;
+    left: 20px;
+    z-index: 1000;
     cursor: pointer;
-    top: 20%; /* Start position */
-    left: 10%; /* Start position */
-    animation: float 10s infinite ease-in-out alternate; /* Smooth floating effect */
-}
-
-/* Float animation */
-@keyframes float {
-    0% {
-        transform: translateY(0); /* Start at original position */
-    }
-    100% {
-        transform: translateY(-20px); /* Float up slightly */
-    }
+    animation: float 3s ease-in-out infinite;
 }
 
 .hidden {
@@ -172,22 +162,6 @@ ul li:nth-child(3)::before {
     color: #ff0000; /* Deep blood-red symbol */
 }
 
-/* Scroll reveal effect */
-section {
-    opacity: 0;
-    transform: translateX(-100px);
-    transition: opacity 1s ease-in-out;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-audio {
-    display: none; /* This hides the audio player from view */
-}
-
 /* Footer styling */
 footer {
     margin-top: 40px;
@@ -195,13 +169,6 @@ footer {
     font-size: 1.2rem;
     color: #999;
     font-weight: bold;
-}
-
-.left-section{
-    text-align: left;
-}
-.right-section{
-    text-align: right;
 }
 
 /* Malachar's signature in green */
@@ -234,56 +201,21 @@ footer strong:hover {
     }
 }
 
-/* RSVP Section Styling */
-.rsvp-section {
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* RSVP Button styling */
-.rsvp-btn {
-    background-color: #660000;
-    color: #ffffff;
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
-    padding: 10px 20px;
-    border: 2px solid #330000;
-    border-radius: 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    position: relative; /* Important: make the RSVP button the positioning context */
-    z-index: 1; /* Keep the RSVP button visible */
-}
-
-/* Hover effect for the button */
-.rsvp-btn:hover {
-    background-color: #990000; /* Brighter red on hover */
-    color: #ffcccc; /* Lighter text color */
-}
-
-/* Blood Spatter Image styling */
-#blood-spatter {
-    position: absolute; /* Change to fixed so it's relative to the entire viewport */
-    width: 150px;
-    top: 50%; /* Centered vertically */
-    left: 50%; /* Centered horizontally */
-    transform: translate(-50%, -50%); /* Adjust the position for perfect centering */
-    transition: opacity 0.5s ease;
-    z-index: 9999; /* Ensure it's above other content */
-}
-
-.fade-hidden {
+/* Scroll reveal effect */
+section {
     opacity: 0;
-    pointer-events: none;
+    transform: translateX(-100px);
+    transition: opacity 1s ease-in-out;
 }
 
-.fade-visible {
+section.visible {
     opacity: 1;
-    pointer-events: all;
+    transform: translateX(0);
 }
 
-
-
+audio {
+    display: none; /* This hides the audio player from view */
+}
 
 /* Media Queries for Responsiveness */
 

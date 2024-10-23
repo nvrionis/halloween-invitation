@@ -23,8 +23,8 @@
         <!-- Event Details Section -->
         <section>
             <h2>Details of the Event</h2>
-            <p><strong>Date:</strong> All Hallow’s Eve</p>
-            <p><strong>Location:</strong> Gloomsveil Keep, high upon the Cliff of Shadows, where no light dares to reach.</p>
+            <p id="date" class="in-game-info"><strong>Date:</strong> All Hallow’s Eve</p>
+            <p id="location" class="in-game-info"><strong>Location:</strong> Gloomsveil Keep, where no light dares to reach.</p>
         </section>
 
         <!-- Agenda Section -->
@@ -40,7 +40,7 @@
         <!-- Dress Code Section -->
         <section id="dress-code">
             <h2>Dress Code</h2>
-            <p>Attire befitting your station of terror and malice. Be prepared to show the full power of your dark dominion.</p>
+            <p id="dress" class="in-game-info"><strong>Attire:</strong> Befitting your station of terror and malice. Be prepared to show the full power of your dark dominion.</p>
         </section>
 
         <!-- Epilogue Section -->
@@ -50,81 +50,224 @@
             <p>Do not be late—those who fail to attend will find the shadows far less forgiving than they remember.</p>
         </section>
 
-        <!-- Footer Section -->
-        <footer>
-            <p>Signed,</p>
-            <strong id="malachar-signature" class="glow">Malachar the Undying<br>Master of Gloomsveil Keep<br>Keeper of the Eternal Night</strong>
+        <!-- Footer Section (Signature on the left, RSVP on the right) -->
+        <footer class="footer-container">
+            <div class="left-section">
+                <p>Signed,</p>
+                <strong id="malachar-signature" class="glow">Malachar the Undying<br>Master of Gloomsveil Keep<br>Keeper of the Eternal Night</strong>
+            </div>
+
+            <!-- RSVP Button on the right -->
+            <div class="right-section">
+                <button id="rsvp-button" class="rsvp-btn">
+                    RSVP
+                    <!-- Blood Spatter Image (initially hidden) -->
+                    <img src="images/blood_spatter.png" id="blood-spatter" class="fade-hidden" alt="Blood Spatter" />
+                </button>
+            </div>
         </footer>
+
+
     </div>
 
+    <!-- Whispering Skull (Sound ON) -->
+    <img src="images/whispering_skull.png" id="whispering-skull" class="skull" alt="Whispering Skull" />
+
+    <!-- Mute Skull (Sound OFF) -->
+    <img src="images/mute_skull.png" id="mute-skull" class="skull hidden" alt="Mute Skull" />
+
+
     <!-- Eerie Background Sound -->
-    <audio id="background-audio" loop muted preload="auto">
+    <audio id="background-audio" loop preload="auto">
         <source src="sounds/spooky_sound.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <!-- Hover Sound -->
     <audio id="hover-sound" src="sounds/laugh.mp3" preload="auto"></audio>
-
+    
     <script>
-        var hasPlayed = false; // To prevent multiple triggers
+        /**** HOVER TEXT FUNCTIONALITY ****/
+        // Original text storage (in-game info)
+        var originalDateText = "<strong>Date:</strong> All Hallow’s Eve";
+        var originalLocationText = "<strong>Location:</strong> Gloomsveil Keep, where no light dares to reach.";
+        var originalDressText = "<strong>Attire:</strong> Befitting your station of terror and malice. Be prepared to show the full power of your dark dominion.";
+    
+        // Hover text (player info)
+        var hoverDateText = "<strong>Date:</strong> On the first weekend of the November. (Player Info)";
+        var hoverLocationText = "<strong>Location:</strong> To be decided when all RSVPs are done. (Player Info)";
+        var hoverDressText = "<strong>Attire:</strong> Strong suggestion. Dress up like your character embrace the spirit of Halloween. (Player Info)";
+    
+        // Function to change text, font, and color on hover/touch
+        function changeTextOnHover(id, originalText, hoverText) {
+            var element = document.getElementById(id);
+            
+            // On hover: change text, add 'player-info' class
+            element.addEventListener('mouseenter', function() {
+                element.innerHTML = hoverText;
+                element.classList.remove('in-game-info');
+                element.classList.add('player-info');
+            });
         
-        // Function to play the audio once user interacts
-        function playAudio() {
-            if (!hasPlayed) {
-                var audio = document.getElementById("background-audio");
-                audio.muted = false; // Unmute the audio once the user interacts
-                audio.play().then(function() {
-                    hasPlayed = true; // Mark that the audio has played
-                    removeInteractionListeners(); // Remove event listeners after audio plays
+            // On hover out: return to original text, add 'in-game-info' class
+            element.addEventListener('mouseleave', function() {
+                element.innerHTML = originalText;
+                element.classList.remove('player-info');
+                element.classList.add('in-game-info');
+            });
+        
+            // For mobile touch events
+            element.addEventListener('touchstart', function() {
+                element.innerHTML = hoverText;
+                element.classList.remove('in-game-info');
+                element.classList.add('player-info');
+            });
+    
+            element.addEventListener('touchend', function() {
+                element.innerHTML = originalText;
+                element.classList.remove('player-info');
+                element.classList.add('in-game-info');
+            });
+        }
+    
+        // Apply the hover effect to the Date, Location, and Dress Code elements
+        changeTextOnHover('date', originalDateText, hoverDateText);
+        changeTextOnHover('location', originalLocationText, hoverLocationText);
+        changeTextOnHover('dress', originalDressText, hoverDressText);
+    
+        
+        /**** SOUND TOGGLE & MOVING SKULL FUNCTIONALITY ****/
+        var backgroundAudio = document.getElementById("background-audio");
+        var whisperingSkull = document.getElementById("whispering-skull");
+        var muteSkull = document.getElementById("mute-skull");
+    
+        var isPlaying = false; // Initially, the audio is not playing
+        var isListenersAdded = false; // Flag to check if event listeners are added
+
+        // Function to toggle sound and swap skulls
+        function toggleSound() {
+            if (isPlaying) {
+                backgroundAudio.pause(); // Pause the audio
+            backgroundAudio.onpause = function() {
+                    console.log("Audio has paused successfully.");
+                    isPlaying = false; // Update playing state after pause
+                    muteSkull.classList.remove('hidden'); // Show mute skull
+                    whisperingSkull.classList.add('hidden'); // Hide whispering skull
+                    console.log("isPlaying state (after pause):", isPlaying);
+            };
+            } else {
+                backgroundAudio.muted = false; // Unmute the audio if needed
+                backgroundAudio.play().then(function() {
+            console.log("Audio is playing now");
+            isPlaying = true; // Update playing state after play
+                    whisperingSkull.classList.remove('hidden'); // Show whispering skull
+                    muteSkull.classList.add('hidden'); // Hide mute skull
+                    console.log("isPlaying state (after play):", isPlaying);
+                }).catch(function(error) {
+                        console.log("Audio play failed:", error);
+                    });
+           }
+           console.log("isPlaying state (end of function):", isPlaying);
+        }
+    
+        // Add click event listeners to both skulls
+        whisperingSkull.addEventListener('click', toggleSound);
+        muteSkull.addEventListener('click', toggleSound);
+    
+        // Function to play audio when the user interacts
+        function playAudioOnce() {
+            if (!isPlaying) {
+                backgroundAudio.muted = false; // Ensure the audio is unmuted
+                backgroundAudio.play().then(function() {
+                    console.log("Audio is playing now");
+                    isPlaying = true; // Mark the audio as playing
+                    removePlayAudioListeners(); // Remove event listeners after the first interaction
                 }).catch(function(error) {
                     console.log("Audio play failed:", error);
                 });
             }
         }
     
-        // Function to remove event listeners after audio is triggered
-        function removeInteractionListeners() {
-            document.removeEventListener('click', playAudio);
-            document.removeEventListener('scroll', playAudio);
-            document.removeEventListener('keydown', playAudio);
-            document.removeEventListener('touchstart', playAudio);
+        // Function to remove event listeners after the first interaction
+        function removePlayAudioListeners() {
+            document.removeEventListener('click', playAudioOnce);
+            document.removeEventListener('scroll', playAudioOnce);
+            document.removeEventListener('keydown', playAudioOnce);
+            document.removeEventListener('touchstart', playAudioOnce);
+        }
+
+        // Ensure user interaction before playing background audio (add only once)
+        if (!isListenersAdded) {
+            document.addEventListener('click', playAudioOnce);
+            document.addEventListener('scroll', playAudioOnce);
+            document.addEventListener('keydown', playAudioOnce);  // For keyboard interaction
+            document.addEventListener('touchstart', playAudioOnce);  // For mobile touch
+            isListenersAdded = true; // Mark listeners as added
         }
     
-        // Ensure user interaction before playing audio
-        document.addEventListener('click', playAudio);
-        document.addEventListener('scroll', playAudio);
-        document.addEventListener('keydown', playAudio);  // For keyboard interaction
-        document.addEventListener('touchstart', playAudio);  // For mobile touch
     
-        // Scroll reveal for sections
+        //**** MOVE SKULLS ****//
+        // Random floating skull function
+        function getRandomPosition(max) {
+            return Math.floor(Math.random() * max);
+        }
+    
+        function moveSkullSmoothly() {
+            const currentSkull = isPlaying ? whisperingSkull : muteSkull; // Choose the correct skull
+            const viewportWidth = window.innerWidth - currentSkull.clientWidth;
+            const viewportHeight = window.innerHeight - currentSkull.clientHeight;
+    
+            const newLeft = getRandomPosition(viewportWidth);
+            const newTop = getRandomPosition(viewportHeight);
+    
+            // Smoothly update the skull position over 5 seconds
+            currentSkull.style.transition = 'top 5s ease-in-out, left 5s ease-in-out';
+            currentSkull.style.left = '${newLeft}px';
+            currentSkull.style.top = '${newTop}px';
+        }
+    
+        // Move the skull every 5 seconds to a new random position
+        setInterval(moveSkullSmoothly, 2000);
+    
+    
+        /**** RSVP BUTTON FUNCTIONALITY ****/
+        var rsvpButton = document.getElementById('rsvp-button');
+        rsvpButton.addEventListener('click', handleRSVPClick);
+        rsvpButton.addEventListener('touchstart', handleRSVPClick);
+
+        function handleRSVPClick() {
+            var bloodSpatter = document.getElementById('blood-spatter');
+            console.log(bloodSpatter.classList);  // See if 'fade-visible' is added
+
+            console.log("RSVP Button Clicked"); // Debugging message to ensure the function is running
+
+            // Show the blood spatter image
+            bloodSpatter.classList.remove('fade-hidden');
+            bloodSpatter.classList.add('fade-visible');
+
+            // Debugging to check if the class is added
+            console.log(bloodSpatter.classList);
+
+            // Redirect to RSVP page after 10 seconds (you can change it back to 2 seconds)
+            setTimeout(function() {
+                window.location.href = 'rsvp.html'; // Replace with the actual URL of your RSVP page
+            }, 2000); // 10-second delay for testing
+        }
+  
+        /**** SCROLL REVEAL FUNCTIONALITY ****/
         function revealSections() {
             var sections = document.querySelectorAll("section");
             sections.forEach(function(section) {
                 var sectionPosition = section.getBoundingClientRect().top;
                 var screenPosition = window.innerHeight / 1.3;
-        
+    
                 if (sectionPosition < screenPosition) {
                     section.classList.add('visible');
                 }
             });
         }
-        
+    
         window.addEventListener('scroll', revealSections);
-    
-        // Play hover sound for Malachar's signature
-        var hoverSound = document.getElementById("hover-sound");
-        var malacharSignature = document.getElementById("malachar-signature");
-    
-        malacharSignature.addEventListener('mouseenter', function() {
-            hoverSound.play();
-        });
-    
-        // Optionally stop sound when hover ends
-        malacharSignature.addEventListener('mouseleave', function() {
-            hoverSound.pause();
-            hoverSound.currentTime = 0; // Reset sound to the beginning
-        });
     </script>
     
 
