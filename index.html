@@ -89,7 +89,7 @@
 
     <!-- Eerie Background Sound -->
     <audio id="background-audio" loop preload="auto">
-        <source src="sounds/spooky_sound.mp3" type="audio/mpeg">
+        <source src="sounds/Nightmare.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
@@ -215,6 +215,21 @@
             isListenersAdded = true; // Mark listeners as added
         }
     
+
+
+        // Select the hover sound audio element and malachar-signature element
+        var hoverSound = document.getElementById("hover-sound");
+        var malacharSignature = document.getElementById("malachar-signature");
+
+        // Function to play the laugh sound
+        function playLaughSound() {
+            hoverSound.currentTime = 0; // Reset to start each time it's played
+            hoverSound.play();
+        }
+
+        // Add event listener for hover effect on malachar-signature
+        malacharSignature.addEventListener('mouseenter', playLaughSound);
+
     
         //**** MOVE SKULLS ****//
         // Random floating skull function
