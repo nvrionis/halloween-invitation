@@ -167,6 +167,7 @@
             };
             } else {
                 backgroundAudio.muted = false; // Unmute the audio if needed
+                backgroundAudio.volume = 0.5;
                 backgroundAudio.play().then(function() {
             console.log("Audio is playing now");
             isPlaying = true; // Update playing state after play
@@ -188,6 +189,7 @@
         function playAudioOnce() {
             if (!isPlaying) {
                 backgroundAudio.muted = false; // Ensure the audio is unmuted
+                backgroundAudio.volume = 0.5;
                 backgroundAudio.play().then(function() {
                     console.log("Audio is playing now");
                     isPlaying = true; // Mark the audio as playing
