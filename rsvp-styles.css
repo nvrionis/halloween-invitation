@@ -118,6 +118,24 @@ button:hover {
     pointer-events: all;
 }
 
+/* Style for the "Your Mortal ID" input field */
+#mortal-id {
+    padding: 10px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-size: 1.2rem;
+    border: 2px solid #660000;
+    border-radius: 10px;
+    font-family: 'Great Vibes', cursive;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Hide elements by default */
+.signature-hidden {
+    display: none;
+}
+
 /* Styling for the select dropdown */
 select {
     width: 100%;
@@ -132,20 +150,6 @@ select {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
-}
-
-/* Ensure select dropdown doesn't overflow */
-select {
-    max-width: 100%; /* Ensure select doesn't overflow on smaller screens */
-    white-space: nowrap; /* Prevent wrapping */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis if text is too long */
-}
-
-/* Limit height for dropdown and allow scrolling */
-select {
-    max-height: 200px; /* Limit height */
-    overflow-y: auto;  /* Add vertical scrolling if options are too many */
 }
 
 select option {
@@ -186,11 +190,6 @@ form select {
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%); /* Center the signature image */
-}
-
-/* Hide the container initially */
-.signature-hidden {
-    display: none;
 }
 
 /* Mobile-friendly form adjustments */
@@ -291,5 +290,44 @@ form select {
 }
 
 #custom-alert button:hover {
+    background-color: #990000;
+}
+
+/* Custom Alert Modal Styling */
+#validation-alert {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(10, 10, 10, 0.95);
+    color: #ff3333; /* Blood-red text */
+    padding: 30px;
+    border: 2px solid #660000; /* Blood-red border */
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); /* Blood-red shadow */
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    z-index: 1000; /* Bring it on top */
+}
+
+#validation-alert h2 {
+    color: #ff3333; /* Blood-red text */
+    margin-bottom: 20px;
+}
+
+#validation-alert button {
+    background-color: #660000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+}
+
+#validation-alert button:hover {
     background-color: #990000;
 }

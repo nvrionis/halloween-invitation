@@ -38,7 +38,7 @@
 
         <form id="rsvp-form">
             <label for="character-name" class="blood-text">Your Character:</label>
-            <select id="character-name" name="character-name" class="blood-text" required>
+            <select id="character-name" name="character-name" class="blood-text">
                 <option value="" disabled selected>Select your character</option>
                 <<option value="dracula">Count Dracula</option>
                 <option value="wolfman">The Wolf Man</option>
@@ -75,7 +75,11 @@
             <div id="signature-container" class="signature-hidden">
                 <img id="signature-img" src="images/blood_spatter.png" alt="Signature" />
             </div>
-        
+            
+            <!-- Add "Your Mortal ID" field after character selection -->
+            <label for="mortal-id" class="blood-text signature-hidden" id="mortal-id-label">Your Mortal ID:</label>
+            <input type="text" id="mortal-id" name="mortal-id" class="signature-hidden" placeholder="Name/Discord"/>
+
             <button type="submit" id="acceptance-button" class="blood-text">Sign</button>
         </form>
  
@@ -90,6 +94,11 @@
         <p>See you at the Gathering...</p>
         <button id="close-alert">Close</button>
     </div>
+
+    <div id="validation-alert" class="custom-alert signature-hidden">
+        <h2 id="alert-message">Alert Message</h2>
+        <button id="close-validation-alert" class="blood-text">Close</button>
+    </div>
     
 
     <!-- Script to handle form submission, signature change, and blood spatter effect -->
@@ -98,12 +107,17 @@
         window.onload = function() {
             var signatureContainer = document.getElementById('signature-container');
             var signatureImg = document.getElementById('signature-img');
+            var mortalIdField = document.getElementById('mortal-id');
+            var mortalIdLabel = document.getElementById('mortal-id-label');
 
             // Hide the container by default on page load
             signatureContainer.classList.add('signature-hidden');
 
             document.getElementById('character-name').addEventListener('change', function() {
                 var selectedCharacter = this.value;
+
+                mortalIdField.classList.remove('signature-hidden');
+                mortalIdLabel.classList.remove('signature-hidden')
 
                 // Reset by hiding the container and removing previous classes
                 signatureContainer.classList.add('signature-hidden');
@@ -220,32 +234,59 @@
                             signatureImg.src = 'images/blood_spatter.png'; // Reset to blood spatter if no character is selected
                     }
                     // Scroll to the signature container with smooth behavior
-                    signatureContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    mortalIdField.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             });
         }
-  
+
+        // Function to show custom alert with a specific message
+        function showAlert(message) {
+            var alertBox = document.getElementById('validation-alert');
+            var alertMessage = document.getElementById('alert-message');
+            alertMessage.textContent = message;
+            alertBox.style.display = 'block';
+        }
+
+        // Close the custom alert when clicking the "Close" button
+        document.getElementById('close-validation-alert').addEventListener('click', function() {
+            document.getElementById('validation-alert').style.display = 'none';
+        });
 
         document.getElementById('rsvp-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Show the custom modal
+            // Retrieve values from the form fields
+            var characterName = document.getElementById('character-name').value;
+            var mortalId = document.getElementById('mortal-id').value;
+
+            // Check if both fields are filled
+            if (!characterName) {
+                showAlert("Please select your character.");
+                return; // Prevent submission if character is not selected
+            }
+            
+            if (!mortalId) {
+                showAlert("Please enter your Mortal ID.");
+                return; // Prevent submission if Mortal ID is empty
+            }
+
+            // Show the custom modal once validation is passed
             var customAlert = document.getElementById('custom-alert');
             customAlert.style.display = 'block';
 
-            // Hide the blood spatter as well if needed
+            // Display the blood spatter effect
             var bloodSpatter = document.getElementById('blood-spatter');
             bloodSpatter.classList.remove('fade-hidden');
             bloodSpatter.classList.add('fade-visible');
 
-            // EmailJS integration
-            var characterName = document.getElementById('character-name').value;
-            
+            // Prepare email template parameters
             var templateParams = {
-                character_name: characterName, // Pass the selected character
+                character_name: characterName, // Pass selected character
+                mortal_id: mortalId,           // Include Mortal ID
                 message: 'RSVP to Malachar\'s Gathering'
             };
 
+            // Send the email using EmailJS
             emailjs.send('service_8mr8hwu', 'template_6wow1zn', templateParams)
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
@@ -253,10 +294,11 @@
                 console.log('FAILED...', error);
             });
 
-            // Close the modal when clicking the "Close" button
-            document.getElementById('close-alert').addEventListener('click', function() {
-                customAlert.style.display = 'none';
-            });
+        });
+
+        document.getElementById('close-alert').addEventListener('click', function() {
+            var customAlert = document.getElementById('custom-alert');
+            customAlert.style.display = 'none';
         });
 
     </script>
