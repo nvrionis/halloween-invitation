@@ -17,7 +17,7 @@
     
         <!-- Link to CSS file -->
         <link rel="stylesheet" href="styles.css">
-        <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     </head>
     
 <body>
@@ -26,20 +26,20 @@
     <div id="container">
         <!-- Header Section -->
         <header>
-            <h1>Invitation to the Centennial Gathering of Evil Lords</h1>
+            <h2>Invitation to the Centennial Gathering of Evil Lords</h2>
             <p>By the Will of Malachar the Undying, Master of Gloomsveil Keep, Sovereign of Darkness, and Eternal Guardian of the Shadows</p>
         </header>
 
         <!-- Event Details Section -->
         <section>
-            <h2>Details of the Event</h2>
+            <h3>Details of the Event</h3>
             <p id="date" class="in-game-info"><strong>Date:</strong> All Hallow’s Eve</p>
             <p id="location" class="in-game-info"><strong>Location:</strong> Gloomsveil Keep, where no light dares to reach.</p>
         </section>
 
         <!-- Agenda Section -->
         <section>
-            <h2>Agenda</h2>
+            <h3>Agenda</h3>
             <ul>
                 <li><strong>Feast of Shadows:</strong> A banquet like none other, with delicacies crafted from the darkest corners of the world.</li>
                 <li><strong>Revelry of the Damned:</strong> An evening of dark celebration, where the greatest villains and creatures of evil shall gather to revel in their conquests.</li>
@@ -49,13 +49,13 @@
 
         <!-- Dress Code Section -->
         <section id="dress-code">
-            <h2>Dress Code</h2>
+            <h3>Dress Code</h3>
             <p id="dress" class="in-game-info"><strong>Attire:</strong> Befitting your station of terror and malice. Be prepared to show the full power of your dark dominion.</p>
         </section>
-
+        <br>
         <!-- Epilogue Section -->
         <section id="epilogue">
-            <h3>PS</h3>
+            <h4>PS</h4>
             <p>The time has come for the true Lords of Darkness to gather, to plot, to feast, and to celebrate the triumph of shadow over light.</p>
             <p>Do not be late—those who fail to attend will find the shadows far less forgiving than they remember.</p>
         </section>
@@ -70,7 +70,7 @@
             <!-- RSVP Button on the right -->
             <div class="right-section">
                 <button id="rsvp-button" class="rsvp-btn">
-                    RSVP
+                    Seal the Pact
                     <!-- Blood Spatter Image (initially hidden) -->
                     <img src="images/blood_spatter.png" id="blood-spatter" class="fade-hidden" alt="Blood Spatter" />
                 </button>
@@ -367,6 +367,13 @@
             // Show the blood spatter image
             bloodSpatter.classList.remove('fade-hidden');
             bloodSpatter.classList.add('fade-visible');
+
+            // Press effect on the seal itself
+            rsvpButton.style.transform = 'scale(0.98)';
+            setTimeout(function(){
+            rsvpButton.style.transform = '';
+            }, 180);
+
 
             // Debugging to check if the class is added
             console.log(bloodSpatter.classList);

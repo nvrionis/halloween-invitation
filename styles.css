@@ -97,17 +97,25 @@ body {
     100% { transform: translateY(0); }
 }
 
-/* Header styling */
-header h1 {
-    font-family: 'Cinzel', serif; /* Cleaner and more readable */
-    color: #ff3333; /* Blood-red color */
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 3.5rem; /* Slightly larger title */
-    margin-bottom: 20px;
-    text-shadow: 3px 3px 10px rgba(255, 0, 0, 0.7); /* Subtle glowing red shadow */
-    animation: fadeIn 2s ease-out;
+/* Header — dark crimson with restrained glow */
+header h2 {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.2;
+  margin: 0 0 18px;
+
+  /* Deep, controlled color palette */
+  color: #b11116; /* dark crimson red */
+  text-shadow:
+    0 0 2px rgba(0,0,0,0.8),
+    0 0 10px rgba(177,17,22,0.4),
+    0 0 20px rgba(90,0,0,0.6); /* subtle outer glow */
 }
+
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
@@ -115,15 +123,18 @@ header h1 {
 }
 
 header p {
-    text-align: center;
-    font-size: 1.5rem;
-    color: #d4d4d4;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 1.2rem;
+  color: #d0c4b8;
+  margin-bottom: 30px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.6);
+  font-style: italic;
+  letter-spacing: 0.02em;
 }
 
+
 /* Section headers */
-h2 {
+h3 {
     font-family: 'UnifrakturMaguntia', serif;
     font-size: 2.5rem;
     margin-bottom: 15px;
@@ -255,20 +266,68 @@ footer strong:hover {
     margin-top: 40px;
 }
 
-/* RSVP Button styling */
-.rsvp-btn {
-    background-color: #660000;
-    color: #ffffff;
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
-    padding: 10px 20px;
-    border: 2px solid #330000;
-    border-radius: 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    position: relative; /* Important: make the RSVP button the positioning context */
-    z-index: 1; /* Keep the RSVP button visible */
+
+/* Wax-seal RSVP */
+.rsvp-btn{
+  /* glossy wax + vignette */
+  background:
+    radial-gradient(120px 60px at 50% 42%, #7a1219, #4a070b 70%),
+    radial-gradient(180px 90px at 50% 15%, rgba(255,255,255,.15), transparent 60%);
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 30px;
+  color: #fff5f5;
+  text-transform: uppercase;
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  letter-spacing: .08em;
+  box-shadow:
+    inset 0 8px 16px rgba(255,255,255,.08),
+    inset 0 -12px 28px rgba(0,0,0,.45),
+    0 10px 24px rgba(0,0,0,.45);
+  position: relative;
+  isolation: isolate;
+  cursor: pointer;
+  transition: transform .12s ease, filter .2s ease;
 }
+
+/* Embossed ring, faint glow (not a hard outline) */
+.rsvp-btn::before{
+  content:"";
+  position:absolute; inset:-5px;
+  border-radius:inherit;
+  box-shadow:
+    0 0 0 2px rgba(210,20,38,.22),
+    0 0 22px rgba(210,20,38,.16);
+  pointer-events:none;
+}
+
+/* Soft pulse to draw the eye */
+@keyframes sealPulse { 
+  0% { transform: scale(1) }
+  50%{ transform: scale(1.02) }
+  100%{ transform: scale(1) }
+}
+.rsvp-btn { animation: sealPulse 2.8s ease-in-out infinite; }
+
+/* Hover/press */
+.rsvp-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.rsvp-btn:active{ transform: translateY(0); filter: brightness(.98); }
+
+/* Keep your blood spatter above the seal */
+#blood-spatter{
+  position:absolute;
+  width:150px;
+  left:50%; top:50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  transition: opacity .5s ease, transform .5s ease;
+  z-index: 2;                 /* higher than the button background */
+}
+.fade-visible { opacity: 1; transform: translate(-50%, -50%) rotate(-8deg) scale(1.02); }
+.fade-hidden  { opacity: 0; pointer-events:none; }
+
+
+
 
 /* Hover effect for the button */
 .rsvp-btn:hover {
@@ -462,4 +521,15 @@ a:focus-visible,
 [role="button"]:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
+}
+
+/* Ancient book vibe */
+body, p, ul, li, section, footer { 
+  font-family: 'EB Garamond', serif; 
+}
+
+/* Title + section heads in blackletter */
+header h1, h2, h3 {
+  font-family: 'UnifrakturMaguntia', cursive;
+  letter-spacing: .02em;
 }
