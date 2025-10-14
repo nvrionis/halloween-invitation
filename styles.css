@@ -366,6 +366,58 @@ footer strong:hover {
 }
 
 
+/* === FLOATING SKULLS === */
+.skull {
+  position: fixed;
+  width: 160px; /* larger, detailed version */
+  height: auto;
+  z-index: 1000;
+  cursor: url('images/cursor_action.png') 16 16, pointer;
+  animation: floatSkull 10s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.3));
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover gives eerie movement + glow */
+.skull:hover {
+  transform: scale(1.1) rotate(3deg);
+  filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.6));
+  opacity: 1;
+}
+
+/* Gentle floating effect */
+@keyframes floatSkull {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(-2deg); }
+}
+
+/* Position variations for multiple skulls */
+.skull.left {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.skull.right {
+  bottom: 15%;
+  right: 5%;
+  animation-delay: 2s;
+}
+
+.skull.center {
+  top: 40%;
+  left: 45%;
+  animation-delay: 1s;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .skull {
+    width: 100px;
+  }
+}
 
 
 /* Media Queries for Responsiveness */
