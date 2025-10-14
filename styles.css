@@ -1,3 +1,63 @@
+:root {
+  --font-title: "Creepster", cursive;
+  --font-heading: "UnifrakturCook", cursive;
+  --font-body: "Metamorphous", serif;
+}
+
+/* Main title (Creepster) */
+h2 {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: #c11717;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 12px rgba(193,23,23,0.6),
+    2px 2px 4px rgba(0,0,0,0.9),
+    0 0 30px rgba(255,0,0,0.4);
+  margin-bottom: 0.6em;
+  animation: bloodPulse 4s ease-in-out infinite;
+}
+
+/* Subheadings (UnifrakturCook) */
+h3, h4 {
+  font-family: 'UnifrakturCook', cursive !important;
+  font-weight: 700;
+  color: #e7e5dc;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+
+/* Body text (Metamorphous) */
+body, p, li, label, input, button {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #cfcfcf;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/* Accent strong/emphasis */
+
+em, i {
+  color: #bdb7a6;
+}
+
+/* RSVP section – uses body font, but styled for clarity */
+.rsvp-container, #rsvp-section {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  color: #dedad1;
+}
+
+
 /* General reset */
 * {
     margin: 0;
@@ -7,7 +67,6 @@
 
 /* Body styling */
 body {
-    font-family: 'EB Garamond', serif;
     background-color: #0a0a0a; /* Deep black background */
     color: #d4d4d4; /* Soft grey text */
     line-height: 1.8;
@@ -109,7 +168,6 @@ a:hover,
 
 /* Header — dark crimson with restrained glow */
 header h2 {
-  font-family: 'Cinzel', serif;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
@@ -145,7 +203,6 @@ header p {
 
 /* Section headers */
 h3 {
-    font-family: 'UnifrakturMaguntia', serif;
     font-size: 2.5rem;
     margin-bottom: 15px;
     color: #cfcfcf;
@@ -164,14 +221,12 @@ p {
 
 /* In-game information style */
 .in-game-info {
-    font-family: 'Cinzel', serif; /* Medieval-style font */
     color: #d4d4d4; /* Soft grey text */
     font-size: 1.2rem;
 }
 
 /* Player information style (on hover) */
 .player-info {
-    font-family: 'Courier New', monospace; /* Monospace font for modern feel */
     color: #ffcc00; /* Bright gold for player info */
     font-size: 1.3rem; /* Slightly larger to stand out */
 }
@@ -242,7 +297,6 @@ footer {
 
 /* Malachar's signature in green */
 footer strong {
-    font-family: 'UnifrakturMaguntia', serif;
     font-size: 1.5rem;
     color: #821889;
     text-shadow: 0 0 10px #821889, 0 0 20px #821889, 0 0 30px #821889;
@@ -288,7 +342,6 @@ footer strong:hover {
   padding: 14px 30px;
   color: #fff5f5;
   text-transform: uppercase;
-  font-family: 'EB Garamond', serif;
   font-weight: 700;
   letter-spacing: .08em;
   box-shadow:
@@ -583,16 +636,6 @@ a:focus-visible,
   outline-offset: 3px;
 }
 
-/* Ancient book vibe */
-body, p, ul, li, section, footer { 
-  font-family: 'EB Garamond', serif; 
-}
-
-/* Title + section heads in blackletter */
-header h1, h2, h3 {
-  font-family: 'UnifrakturMaguntia', cursive;
-  letter-spacing: .02em;
-}
 
 /* === FINAL CURSOR OVERRIDES === */
 
