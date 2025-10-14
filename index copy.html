@@ -79,15 +79,6 @@
 
 
     </div>
-    
-    <!-- Parchment + seal gate (first interaction) -->
-    <div id="parchment-gate" aria-label="Open the invitation" role="dialog" aria-modal="true">
-    <div class="parchment-roll">
-        <img src="images/wax-seal.png" alt="Wax seal — tap to open" id="wax-seal" />
-        <!-- <span class="gate-hint">Tap the seal to break it</span> -->
-    </div>
-    </div>
-
 
     <!-- Whispering Skull (Sound ON) -->
     <img src="images/whispering_skull.png" id="whispering-skull" class="skull" alt="Whispering Skull" />
@@ -250,60 +241,6 @@
             isListenersAdded = true; // Mark listeners as added
         }
     
-        // --- Gate logic: tap seal → play sound, reveal invite ---
-        var gate = document.getElementById('parchment-gate');
-        var wax = document.getElementById('wax-seal');
-
-        // Lock scroll when the parchment gate is shown
-        document.body.classList.add('body-locked');
-
-
-        // Start with gate visible only if we don't already have consent
-        if (localStorage.getItem('soundConsent') === 'yes') {
-        // Try to autoplay; if blocked, we’ll fall back to gate on first gesture
-        backgroundAudio.volume = 0.5;
-        backgroundAudio.muted = false;
-        backgroundAudio.play().then(function () {
-            isPlaying = true;
-            whisperingSkull.classList.remove('hidden');
-            muteSkull.classList.add('hidden');
-            gate.classList.add('gate-hide'); // hide immediately
-        }).catch(function () {
-            // Keep the gate; the tap will satisfy gesture requirement
-        });
-        }
-
-        // handle the tap/click on the seal
-        wax.addEventListener('click', function(){
-        // Scroll to top before opening animation
-        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-
-        backgroundAudio.volume = 0.5;
-        backgroundAudio.muted = false;
-        backgroundAudio.play().then(function(){
-            isPlaying = true;
-            whisperingSkull.classList.remove('hidden');
-            muteSkull.classList.add('hidden');
-            localStorage.setItem('soundConsent','yes');
-        }).catch(function(){ /* ignore – still open the letter */ });
-
-        // Run the unroll animation
-        gate.classList.add('gate-open');
-
-        // After animation finishes: hide overlay + unlock scroll
-        setTimeout(function(){
-            gate.classList.add('gate-hide');
-            document.body.classList.remove('body-locked');
-
-            // (Optional accessibility) set focus to main content
-            const container = document.getElementById('container');
-            if (container) {
-                container.setAttribute('tabindex', '-1');
-                container.focus({ preventScroll: true });
-            }
-        }, 900);
-        });
-
 
 
         // Select the hover sound audio element and malachar-signature element
@@ -334,15 +271,14 @@
             const newLeft = getRandomPosition(viewportWidth);
             const newTop = getRandomPosition(viewportHeight);
 
-            // Smooth 12-second glide
-            currentSkull.style.transition = 'top 8s ease-in-out, left 8s ease-in-out';
+            // Smooth 5-second glide instead of 2 seconds
+            currentSkull.style.transition = 'top 5s ease-in-out, left 5s ease-in-out';
             currentSkull.style.left = `${newLeft}px`;
             currentSkull.style.top = `${newTop}px`;
         }
 
-        // Move to a new random position every 8.5 s
-        setInterval(moveSkullSmoothly, 8500);
-
+        // Move to a new position every 5.2 seconds (slightly longer than transition)
+        setInterval(moveSkullSmoothly, 5200);
 
 
 

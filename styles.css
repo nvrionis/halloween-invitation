@@ -25,21 +25,45 @@ body {
     100% { background-position: -1000px 0; }
 }
 
-/* Main container */
+
+/* Main container — no visible border, no seam */
+/* Main container — kill the white rim completely */
 #container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px;
-    background-image: url('images/parchment.png'); /* Add a parchment texture */
-    background-size: cover; /* Make sure the background image covers the entire container */
-    background-position: center;
-    background-color: rgba(10, 10, 10, 0.9); /* Dark overlay to ensure text is readable */
-    border: 2px solid #3e3e3e; /* Subtle border to give the parchment a worn feel */
-    border-radius: 15px; /* Slightly rounded corners to soften the edges */
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Dark shadow for depth */
-    text-shadow: none; /* Disable text shadows if it interferes with readability */
-    animation: flicker 2s infinite; /* Flicker animation */
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+
+  /* Make the inner panel fully opaque (no semi-transparent corner pixels) */
+  background:
+    linear-gradient(#121212, #121212),              /* opaque tint */
+    url('images/parchment.png') center/cover no-repeat;
+
+  border: 0;
+  border-radius: 15px;
+  background-clip: padding-box;
+  overflow: hidden;
+
+  /* Black outer stroke masks any AA halo + your depth shadow */
+  box-shadow:
+    0 0 0 2px #000,                 /* <- removes the white edge */
+    0 0 30px rgba(0,0,0,0.9);       /* depth */
+
+  transform: translateZ(0);
+  text-shadow: none;
+  animation: flicker 2s infinite;
 }
+
+
+#container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.85); /* not visible as a border */
+  pointer-events: none;
+}
+
 
 @keyframes flicker {
     0% { opacity: 1; }
@@ -58,15 +82,6 @@ body {
     animation: float 10s infinite ease-in-out alternate; /* Smooth floating effect */
 }
 
-/* Float animation */
-@keyframes float {
-    0% {
-        transform: translateY(0); /* Start at original position */
-    }
-    100% {
-        transform: translateY(-20px); /* Float up slightly */
-    }
-}
 
 .hidden {
     display: none;
@@ -353,4 +368,98 @@ footer strong:hover {
     footer {
         font-size: 1rem;
     }
+}
+
+
+/* --- Parchment Gate --- */
+#parchment-gate{
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(1200px 800px at 50% 50%, rgba(0,0,0,.92) 0%, rgba(0,0,0,.96) 60%, #000 100%);
+  backdrop-filter: blur(1px);
+}
+
+/* rolled parchment look */
+#parchment-gate .parchment-roll{
+  position:relative;
+  width:min(82vw, 760px);
+  height: clamp(220px, 32vh, 360px);
+  border:1px solid #3a2222;
+  border-radius: 14px;
+  background:
+    radial-gradient(200px 40px at 50% 10%, rgba(255,255,255,.05), rgba(0,0,0,0)),
+    linear-gradient(180deg, #251b1c 0%, #171214 100%);
+  box-shadow: 0 30px 80px rgba(0,0,0,.8), inset 0 0 80px rgba(255,0,0,.06);
+  overflow:hidden;
+}
+
+/* “rolled” edges using pseudo elements */
+#parchment-gate .parchment-roll::before,
+#parchment-gate .parchment-roll::after{
+  content:""; position:absolute; inset:0;
+  background: repeating-linear-gradient(90deg, rgba(0,0,0,.25) 0 2px, rgba(0,0,0,0) 2px 6px);
+  opacity:.15; pointer-events:none;
+}
+#parchment-gate .parchment-roll::after{
+  background: radial-gradient(120px 30px at 50% 0%, rgba(0,0,0,.5), transparent 60%),
+              radial-gradient(120px 30px at 50% 100%, rgba(0,0,0,.5), transparent 60%);
+  opacity:.35;
+}
+
+/* wax seal */
+#wax-seal{
+  position:absolute; inset:0; margin:auto;
+  width: clamp(120px, 22vw, 220px); height:auto; display:block;
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,.6));
+  cursor:pointer; user-select:none;
+  transition: transform .2s ease;
+}
+#wax-seal:active{ transform: scale(.98) }
+
+/* hint text */
+.gate-hint{
+  position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
+  font: 700 0.95rem/1 'Cinzel', serif; letter-spacing:.02em;
+  color:#e6e6e6; opacity:.8;
+}
+
+/* unroll animation */
+@keyframes unroll {
+  0%   { transform: scaleY(1); border-radius: 14px }
+  70%  { transform: scaleY(0.04); border-radius: 14px }
+  100% { transform: scaleY(0); border-radius: 14px }
+}
+#parchment-gate.gate-open .parchment-roll{
+  animation: unroll .9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+/* seal crack/fade */
+@keyframes crack {
+  0% { transform: scale(1); filter: drop-shadow(0 12px 28px rgba(0,0,0,.6)); opacity:1 }
+  30%{ transform: scale(1.06) }
+  100%{ transform: scale(1.1) rotate(-4deg); opacity:0 }
+}
+#parchment-gate.gate-open #wax-seal{ animation: crack .5s ease forwards }
+
+/* after animation, hide overlay so page is interactive */
+#parchment-gate.gate-hide{ display:none }
+
+
+/* Prevent background scroll while gate is visible */
+.body-locked {
+  overflow: hidden;
+}
+
+
+/* Remove focus outline from the main panel (causing the white rim) */
+#container:focus,
+#container:focus-visible {
+  outline: none;
+}
+
+/* Keep focus outlines for real interactive elements (accessibility) */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }

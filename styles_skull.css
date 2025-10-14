@@ -50,7 +50,7 @@ body {
 /* Skull styling */
 .skull {
     position: fixed;
-    width: 50px;
+    width: 200px;
     top: 10%;
     left: 20px;
     z-index: 1000;
