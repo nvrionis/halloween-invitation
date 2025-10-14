@@ -17,8 +17,19 @@ body {
     padding: 20px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Subtle text shadow for all text */
     animation: mistMove 15s infinite linear;
-    cursor: url('images/Skeleton_Cursor.png') 16 16, pointer;
+    cursor: url('images/cursor_general.png') 16 16, auto;
 }
+
+/* Action cursor for clickable items */
+button:hover,
+a:hover,
+[role="button"]:hover,
+.rsvp-btn:hover,
+#wax-seal:hover,
+.skull:hover {
+    cursor: url('images/cursor_action.png') 16 16, pointer; 
+}
+
 
 @keyframes mistMove {
     0% { background-position: 0 0; }
@@ -76,7 +87,6 @@ body {
     position: fixed; /* Fixed position so it stays visible while scrolling */
     width: 50px; /* Adjust size */
     height: auto;
-    cursor: pointer;
     top: 20%; /* Start position */
     left: 10%; /* Start position */
     animation: float 10s infinite ease-in-out alternate; /* Smooth floating effect */
@@ -287,7 +297,6 @@ footer strong:hover {
     0 10px 24px rgba(0,0,0,.45);
   position: relative;
   isolation: isolate;
-  cursor: pointer;
   transition: transform .12s ease, filter .2s ease;
 }
 
@@ -470,7 +479,6 @@ footer strong:hover {
   position:absolute; inset:0; margin:auto;
   width: clamp(120px, 22vw, 220px); height:auto; display:block;
   filter: drop-shadow(0 12px 28px rgba(0,0,0,.6));
-  cursor:pointer; user-select:none;
   transition: transform .2s ease;
 }
 #wax-seal:active{ transform: scale(.98) }
@@ -532,4 +540,22 @@ body, p, ul, li, section, footer {
 header h1, h2, h3 {
   font-family: 'UnifrakturMaguntia', cursive;
   letter-spacing: .02em;
+}
+
+/* === FINAL CURSOR OVERRIDES === */
+
+/* Use your general cursor everywhere (including the gate overlay)
+   The !important makes sure it wins against any earlier cursor: pointer; */
+html, body, #parchment-gate, #parchment-gate * {
+  cursor: url('images/cursor_general.png') 16 16, auto !important;
+}
+
+/* Use action cursor on anything interactive */
+:is(a, button, .rsvp-btn, #wax-seal, .skull, [role="button"]):hover {
+  cursor: url('images/cursor_action.png') 16 16, pointer !important;
+}
+
+/* If you ever set pointer on active state, keep the action cursor too */
+:is(a, button, .rsvp-btn, #wax-seal, .skull, [role="button"]):active {
+  cursor: url('images/cursor_action.png') 16 16, pointer !important;
 }

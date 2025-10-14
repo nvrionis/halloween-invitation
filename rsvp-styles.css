@@ -331,3 +331,10 @@ form select {
 #validation-alert button:hover {
     background-color: #990000;
 }
+
+html, body {
+  cursor: url('images/cursor_general.png') 16 16, auto !important;
+}
+a:hover, button:hover, [role="button"]:hover {
+  cursor: url('images/cursor_action.png') 16 16, pointer !important;
+}
