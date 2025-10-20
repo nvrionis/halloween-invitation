@@ -1,307 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSVP to Malachar's Gathering</title>
-    <link rel="icon" href="images/Halloween.jpg" type="image/jpeg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RSVP to Malachar's Gathering</title>
+  <link rel="icon" href="images/Halloween.jpg" type="image/jpeg"/>
 
-    <!-- Link to custom CSS and calligraphic font from Google Fonts -->
-    <link rel="stylesheet" href="rsvp-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-    (function(){
-        emailjs.init("Qs6coQYswL_5gL3a5");
-    })();
-    </script>
+  <link rel="stylesheet" href="rsvp-styles.css?v=5"/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"/>
 
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>(function(){ emailjs.init("Qs6coQYswL_5gL3a5"); })();</script>
 </head>
 <body>
 
-    <!-- Main Container -->
-    <div id="container">
-        <!-- Blood-red text animation for the RSVP invitation -->
-        <header>
-            <h1 id="rsvp-title" class="blood-text-container">
-                <span style="--delay: 0s">R</span><span style="--delay: 0.15s">S</span><span style="--delay: 0.3s">V</span><span style="--delay: 0.45s">P</span>
-                <span style="--delay: 0.6s">f</span><span style="--delay: 0.75s">o</span><span style="--delay: 0.9s">r</span>
-                <span style="--delay: 1.05s">t</span><span style="--delay: 1.2s">h</span><span style="--delay: 1.35s">e</span>
-                <span style="--delay: 1.5s">G</span><span style="--delay: 1.65s">a</span><span style="--delay: 1.8s">t</span><span style="--delay: 1.95s">h</span><span style="--delay: 2.1s">e</span><span style="--delay: 2.25s">r</span><span style="--delay: 2.4s">i</span><span style="--delay: 2.55s">n</span><span style="--delay: 2.7s">g</span>
-            </h1>
-        </header>
-        
-        <!-- Instructions for the form -->
-        <section>
-            <p class="blood-text">You have been summoned.</p>
-        </section>
+  <div id="container">
+    <header>
+      <h1 id="rsvp-title" class="blood-text-container">
+        <span style="--delay:0s">R</span><span style="--delay:.15s">S</span><span style="--delay:.3s">V</span><span style="--delay:.45s">P</span>
+        <span style="--delay:.6s">f</span><span style="--delay:.75s">o</span><span style="--delay:.9s">r</span>
+        <span style="--delay:1.05s">t</span><span style="--delay:1.2s">h</span><span style="--delay:1.35s">e</span>
+        <span style="--delay:1.5s">G</span><span style="--delay:1.65s">a</span><span style="--delay:1.8s">t</span><span style="--delay:1.95s">h</span><span style="--delay:2.1s">e</span><span style="--delay:2.25s">r</span><span style="--delay:2.4s">i</span><span style="--delay:2.55s">n</span><span style="--delay:2.7s">g</span>
+      </h1>
+    </header>
 
-        <form id="rsvp-form">
-            <label for="character-name" class="blood-text">Your Character:</label>
-            <select id="character-name" name="character-name" class="blood-text">
-                <option value="" disabled selected hidden>Select your character</option>
-                <option value="dracula">Count Dracula</option>
-                <option value="wolfman">The Wolf Man</option>
-                <option value="mummy">The Mummy</option>
-                <option value="frankenstein">Frankenstein's Monster</option>
-                <option value="phantom">The Phantom of the Opera</option>
-                <option value="morticia">Morticia Addams</option>
-                <option value="jekyllhyde">Dr. Jekyll and Mr. Hyde</option>
-                <option value="wickedwitch">The Wicked Witch of the West</option>
-                <option value="horseman">The Headless Horseman</option>
-                <option value="freddy">Freddy Krueger</option>
-                <option value="jason">Jason Voorhees</option>
-                <option value="cruella">Cruella</option>
-                <option value="chucky">Chucky</option>
-                <option value="pennywise">Pennywise the Dancing Clown</option>
-                <option value="samara">Samara</option>
-                <option value="invisibleman">The Invisible Man</option>
-                <option value="maleficent">Maleficent</option>
-                <option value="ursula">Ursula</option>
-                <option value="vader">Darth Vader</option>
-                <option value="voldemort">Voldemort</option>
-                <option value="lecter">Hannibal Lecter</option>
-                <option value="joker">The Joker</option>
-                <option value="jaffar">Jaffar</option>
-                <option value="ghostface">Ghostface</option>
-                <option value="beetlejuice">Beetlejuice</option>
-                <option value="queen">Queen of Hearts</option>
-                <!-- Other options... -->
-            </select>
-        
-            
-            
-            <!-- Signature Container -->
-            <div id="signature-container" class="signature-hidden">
-                <img id="signature-img" src="images/blood_spatter.png" alt="Signature" />
-            </div>
-            
-            <!-- Add "Your Mortal ID" field after character selection -->
-            <label for="mortal-id" class="blood-text signature-hidden" id="mortal-id-label">Your Mortal ID:</label>
-            <input type="text" id="mortal-id" name="mortal-id" class="signature-hidden" placeholder="Name/Discord"/>
+    <section><p class="blood-text">You have been summoned.</p></section>
 
-            <button type="submit" id="acceptance-button" class="blood-text">Sign</button>
-        </form>
- 
+    <form id="rsvp-form">
+      <label for="character-name" class="blood-text">Your Character:</label>
 
-        <!-- Blood spatter effect after submission -->
-        <img src="images/blood_spatter.png" id="blood-spatter" class="fade-hidden" alt="Blood Spatter" />
+      <!-- Custom dropdown (tooltip shows Class — Subclass near cursor) -->
+      <div class="dropdown-wrap">
+        <button type="button" id="character-trigger" class="blood-text dropdown-trigger">Select your character</button>
+        <div id="character-list" class="dropdown-list" role="listbox" aria-labelledby="character-trigger"></div>
+        <div id="class-tooltip" class="class-tooltip" aria-hidden="true"></div>
+      </div>
 
-    </div>
+      <!-- Hidden real select (values + form submission) -->
+      <select id="character-name" name="character-name" class="hidden-select" aria-hidden="true">
+        <option value="" disabled selected hidden>Select your character</option>
+        <option value="vader"      data-class="Paladin"  data-subclass="Oathbreaker"       data-image="images/signatures/vader.png">Darth Vader</option>
+        <option value="joker"      data-class="Rogue"    data-subclass="Arcane Trickster"   data-image="images/signatures/joker.png">The Joker</option>
+        <option value="dracula"    data-class="Sorcerer" data-subclass="Shadow"             data-image="images/signatures/dracula.png">Count Dracula</option>
+        <option value="franky"     data-class="Barabarian" data-subclass="Zelot"            data-image="images/signatures/Franky.png">Frankenstein’s Monster</option>
+        <option value="voldemort"  data-class="WIzard"   data-subclass="Necromancer"        data-image="images/signatures/voldemort.png">Lord Voldemort</option>
+        <option value="hannibal"   data-class="Bard"     data-subclass="Whispers"           data-image="images/signatures/hannibal.png">Hannibal Lecter</option>
+        <option value="loki"       data-class="Cleric"   data-subclass="Trickster"          data-image="images/signatures/loki.png">Loki</option>
+        <option value="freddy"     data-class="WIzard"   data-subclass="Illusions"          data-image="images/signatures/freddy.png">Freddy Krueger</option>
+        <option value="maleficent" data-class="Druid"    data-subclass="Swamp"              data-image="images/signatures/maleficent.png">Maleficent</option>
+        <option value="scar"       data-class="Paladin"  data-subclass="Conquest"           data-image="images/signatures/scar.png">Scar</option>
+        <option value="cruella"    data-class="Bard"     data-subclass="Eloquence"          data-image="images/signatures/cruella.png">Cruella de Vil</option>
+        <option value="pennywise"  data-class="Sorcerer" data-subclass="Aberant Mind"       data-image="images/signatures/pennywise.png">Pennywise</option>
+        <option value="sauron"     data-class="Cleric"   data-subclass="Forge"              data-image="images/signatures/sauron.png">Sauron</option>
+        <option value="wicked"     data-class="WIzard"   data-subclass="Evocation"          data-image="images/signatures/wicked.png">Wicked Witch</option>
+        <option value="hook"       data-class="Rogue"    data-subclass="Shawbuckler"        data-image="images/signatures/hook.png">Captain Hook</option>
+        <option value="jaffar"     data-class="Sorcerer" data-subclass="Dao"                data-image="images/signatures/jaffar.png">Jafar</option>
+        <option value="ursula"     data-class="Warlock"  data-subclass="Fathomless"         data-image="images/signatures/ursula.png">Ursula</option>
+        <option value="hades"      data-class="Warlock"  data-subclass="Fiend"              data-image="images/signatures/hades.png">Hades</option>
+        <option value="queen"      data-class="Warlock"  data-subclass="Hexblade"           data-image="images/signatures/queen.png">The Queen of Hearts</option>
+        <option value="phantom"    data-class="Bard"     data-subclass="Creation"           data-image="images/signatures/phantom.png">The Phantom of the Opera </option>
+        <option value="mummy"      data-class="Cleric"   data-subclass="Death"              data-image="images/signatures/mummy.png">The Mummy </option>
+        <option value="wolfman"    data-class="Barabarian" data-subclass="Beast"            data-image="images/signatures/wolfman.png">Wolf Man</option>
+        <option value="smith"      data-class="Monk"     data-subclass="Open Hand"          data-image="images/signatures/smith.png">Agent Smith</option>
+        <option value="goblin"     data-class="Artificer" data-subclass="Armorer"           data-image="images/signatures/goblin.png">Green Goblin</option>
+        <option value="jekyllhyde" data-class="Alchemist / Berserker" data-subclass="Multi" data-image="images/signatures/jekyllhyde.png">Dr Jekyl &amp; Mr. Hyde</option>
+        <option value="moriarty"   data-class="Rogue"    data-subclass="MasterMind"         data-image="images/signatures/moriarty.png">Professor Moriarty</option>
+        <option value="horsman"    data-class="Paladin"  data-subclass="Vengence"           data-image="images/signatures/horsman.png">The Headless Horseman</option>
+        <option value="ivy"        data-class="Druid"    data-subclass="Spores"             data-image="images/signatures/ivy.png">Poison Ivy</option>
+        <option value="bowser"     data-class="Sorcerer" data-subclass="Dragonic"           data-image="images/signatures/bowser.png">Bowser</option>
+        <option value="strahd"     data-class="WIzard"   data-subclass="Bladesinger"        data-image="images/signatures/strahd.png">Strahd Von Zarovich</option>
+      </select>
 
-    <div id="custom-alert">
-        <h2>Your acceptance has been sealed in blood.</h2>
-        <p>See you at the Gathering...</p>
-        <button id="close-alert">Close</button>
-    </div>
+      <!-- Signature -->
+      <div id="signature-container" class="signature-hidden">
+        <img id="signature-img" src="images/blood_spatter.png" alt="Signature"/>
+      </div>
 
-    <div id="validation-alert" class="custom-alert signature-hidden">
-        <h2 id="alert-message">Alert Message</h2>
-        <button id="close-validation-alert" class="blood-text">Close</button>
-    </div>
-    
+      <!-- Mortal ID -->
+      <label for="mortal-id" class="blood-text signature-hidden" id="mortal-id-label">Your Mortal ID:</label>
+      <input type="text" id="mortal-id" name="mortal-id" class="signature-hidden" placeholder="Name/Discord"/>
 
-    <!-- Script to handle form submission, signature change, and blood spatter effect -->
-    <script>
+      <button type="submit" id="acceptance-button" class="blood-text">Sign</button>
+    </form>
 
-        window.onload = function() {
-            var signatureContainer = document.getElementById('signature-container');
-            var signatureImg = document.getElementById('signature-img');
-            var mortalIdField = document.getElementById('mortal-id');
-            var mortalIdLabel = document.getElementById('mortal-id-label');
+    <img src="images/blood_spatter.png" id="blood-spatter" class="fade-hidden" alt="Blood Spatter"/>
+  </div>
 
-            // Hide the container by default on page load
-            signatureContainer.classList.add('signature-hidden');
+  <div id="custom-alert">
+    <h2>Your acceptance has been sealed in blood.</h2>
+    <p>See you at the Gathering...</p>
+    <button id="close-alert">Close</button>
+  </div>
 
-            document.getElementById('character-name').addEventListener('change', function() {
-                var selectedCharacter = this.value;
+  <div id="validation-alert" class="custom-alert signature-hidden">
+    <h2 id="alert-message">Alert Message</h2>
+    <button id="close-validation-alert" class="blood-text">Close</button>
+  </div>
 
-                mortalIdField.classList.remove('signature-hidden');
-                mortalIdLabel.classList.remove('signature-hidden')
+  <script>
+    // Build the visible list from the hidden <select>
+    (function initDropdownFromSelect(){
+      const select = document.getElementById('character-name');
+      const list   = document.getElementById('character-list');
+      const frag   = document.createDocumentFragment();
 
-                // Reset by hiding the container and removing previous classes
-                signatureContainer.classList.add('signature-hidden');
-                signatureContainer.classList.remove('blood'); // Remove blood class from the container
-                signatureImg.src = ''; // Reset the image
+      Array.from(select.options).forEach(opt=>{
+        if(!opt.value) return; // skip placeholder
+        const item = document.createElement('div');
+        item.className = 'dropdown-item';
+        item.setAttribute('role','option');
+        item.dataset.value = opt.value;
 
-                // If a character is selected, show the signature container
-                if (selectedCharacter) {
-                    signatureContainer.classList.remove('signature-hidden'); // Show the container
+        const name = document.createElement('span');
+        name.className = 'item-name';
+        name.textContent = opt.textContent;
 
-                    // Set the appropriate image based on character selection
-                    switch (selectedCharacter) {
-                        case 'dracula':
-                            signatureImg.src = 'images/signatures_new/dracula.png';
-                            signatureContainer.classList.add('blood'); // Add blood background to the container
-                            break;
-                        case 'wolfman':
-                            signatureImg.src = 'images/signatures_new/wolfman.png';
-                            signatureContainer.classList.add('blood'); // Add blood background to the container
-                            break;
-                        case 'mummy':
-                            signatureImg.src = 'images/signatures_new/mummy.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'frankenstein':
-                            signatureImg.src = 'images/signatures_new/frankenstein.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'phantom':
-                            signatureImg.src = 'images/signatures_new/phantom.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'morticia':
-                            signatureImg.src = 'images/signatures_new/morticia.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'jekyllhyde':
-                            signatureImg.src = 'images/signatures_new/jekyllhyde.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'wickedwitch':
-                            signatureImg.src = 'images/signatures_new/wickedwitch.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'horseman':
-                            signatureImg.src = 'images/signatures_new/horseman.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'freddy':
-                            signatureImg.src = 'images/signatures_new/freddy.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'jason':
-                            signatureImg.src = 'images/signatures_new/jason.png';
-                            signatureContainer.classList.add('blood'); // Add blood background to the container
-                            break;
-                        case 'cruella':
-                            signatureImg.src = 'images/signatures_new/cruella.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'chucky':
-                            signatureImg.src = 'images/signatures_new/chucky.png';
-                            signatureContainer.classList.add('blood'); // Add blood background to the container
-                            break;
-                        case 'pennywise':
-                            signatureImg.src = 'images/signatures_new/pennywise.png';
-                            break;
-                        case 'samara':
-                            signatureImg.src = 'images/signatures_new/samara.png';
-                            break;
-                        case 'invisibleman':
-                            signatureImg.src = 'images/signatures_new/invisibleman.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'maleficent':
-                            signatureImg.src = 'images/signatures_new/maleficent.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'ursula':
-                            signatureImg.src = 'images/signatures_new/ursula.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'vader':
-                            signatureImg.src = 'images/signatures_new/vader.png';
-                            signatureContainer.classList.add('blood'); // Add blood background to the container
-                            break;
-                        case 'voldemort':
-                            signatureImg.src = 'images/signatures_new/voldemort.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'lecter':
-                            signatureImg.src = 'images/signatures_new/lecter.png';
-                            signatureContainer.classList.add('blood'); // Add blood background to the container
-                            break;
-                        case 'joker':
-                            signatureImg.src = 'images/signatures_new/joker.png';
-                            break;
-                        case 'jaffar':
-                            signatureImg.src = 'images/signatures_new/jaffar.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'ghostface':
-                            signatureImg.src = 'images/signatures_new/ghostface.png';
-                            signatureContainer.classList.add('blood'); // Add blood background to the container
-                            break;
-                        case 'beetlejuice':
-                            signatureImg.src = 'images/signatures_new/beetlejuice.png';
-                            signatureContainer.classList.add('blood');
-                            break;
-                        case 'queen':
-                            signatureImg.src = 'images/signatures_new/queen.png';
-                            break;
-                        default:
-                            signatureImg.src = 'images/blood_spatter.png'; // Reset to blood spatter if no character is selected
-                    }
-                    // Scroll to the signature container with smooth behavior
-                    mortalIdField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
+        // (meta kept, hidden via CSS)
+        const meta = document.createElement('span');
+        meta.className = 'item-meta';
+        meta.textContent = '';
+
+        item.appendChild(name);
+        item.appendChild(meta);
+        frag.appendChild(item);
+      });
+
+      list.appendChild(frag);
+    })();
+
+    // Dropdown UI + tooltip that follows the cursor closely
+    (function dropdownUI(){
+    const select  = document.getElementById('character-name');
+    const trigger = document.getElementById('character-trigger');
+    const list    = document.getElementById('character-list');
+    const tooltip = document.getElementById('class-tooltip');
+
+    function openList(){ 
+        list.classList.add('open');  
+        trigger.setAttribute('aria-expanded','true'); 
+    }
+    function closeList(){ 
+        list.classList.remove('open'); 
+        trigger.setAttribute('aria-expanded','false'); 
+        hideTooltip(); 
+    }
+
+    // 🔹 This was missing — it looks up Class/Subclass text from the <select> option
+    function setTooltipTextFor(el){
+        const val = el.getAttribute('data-value');
+        const opt = Array.from(select.options).find(o => o.value === val);
+        if(!opt) return '';
+        const cls = opt.getAttribute('data-class') || '';
+        const sub = opt.getAttribute('data-subclass') || '';
+        return (cls || sub) ? `${cls}${cls && sub ? ' — ' : ''}${sub}` : '';
+    }
+
+    // Always 40px to the right and 20px above the cursor
+    function positionTooltipNearCursor(e){
+    const OFFSET_X = 40;
+    const OFFSET_Y = 40;
+
+    const t  = tooltip;
+    const tw = t.offsetWidth;
+    const th = t.offsetHeight;
+
+    // Viewport coordinates (no scroll math needed with position: fixed)
+    let x = e.clientX + OFFSET_X;
+    let y = e.clientY - OFFSET_Y;   // top = 20px above cursor
+
+    // Clamp to viewport edges
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    if (x + tw + 6 > vw) x = vw - tw - 6;
+    if (x < 6)          x = 6;
+    if (y + th + 6 > vh) y = vh - th - 6;
+    if (y < 6)           y = 6;
+
+    t.style.left = `${x}px`;
+    t.style.top  = `${y}px`;
+    }
+
+    // Show/hide (use these or keep yours)
+    function showTooltip(e, el){
+    const txt = setTooltipTextFor(el);
+    if(!txt){ hideTooltip(); return; }
+    tooltip.textContent = txt;
+    tooltip.style.opacity = 1;
+    tooltip.style.transform = 'translateY(0)';
+    positionTooltipNearCursor(e);
+    }
+    function hideTooltip(){
+    tooltip.style.opacity = 0;
+    tooltip.style.transform = 'translateY(-6px)';
+    }
+
+    // Toggle dropdown open/close
+    trigger.addEventListener('click', ()=>{
+        list.classList.contains('open') ? closeList() : openList();
+    });
+    document.addEventListener('click', e=>{
+        if(!list.contains(e.target) && e.target !== trigger) closeList();
+    });
+
+    // Hook events for each dropdown item
+    // Build/keep your showTooltip, hideTooltip, positionTooltipNearCursor as you have now
+
+    list.querySelectorAll('.dropdown-item').forEach(el=>{
+    // Use the whole row for hover, not just the name
+    el.addEventListener('mouseenter', e => showTooltip(e, el));
+    el.addEventListener('mousemove',  e => positionTooltipNearCursor(e)); // follow cursor smoothly
+    el.addEventListener('mouseleave', hideTooltip);
+
+    // Click still selects the row
+    el.addEventListener('click', () => {
+        const nameEl = el.querySelector('.item-name');
+        const val  = el.getAttribute('data-value');
+        const name = nameEl ? nameEl.textContent : '';
+        trigger.textContent = name;
+        select.value = val;
+        select.dispatchEvent(new Event('change', {bubbles:true}));
+        closeList();
+    });
+    });
+
+    })();
+
+    // Signature preview from data-image
+    window.onload = function() {
+      var signatureContainer = document.getElementById('signature-container');
+      var signatureImg       = document.getElementById('signature-img');
+      var mortalIdField      = document.getElementById('mortal-id');
+      var mortalIdLabel      = document.getElementById('mortal-id-label');
+
+      signatureContainer.classList.add('signature-hidden');
+
+      document.getElementById('character-name').addEventListener('change', function() {
+        var opt = this.options[this.selectedIndex];
+        var imgPath = opt && opt.getAttribute('data-image');
+
+        mortalIdField.classList.remove('signature-hidden');
+        mortalIdLabel.classList.remove('signature-hidden');
+
+        signatureContainer.classList.add('signature-hidden');
+        signatureContainer.classList.remove('blood');
+        signatureImg.src = '';
+
+        if (this.value) {
+          signatureContainer.classList.remove('signature-hidden');
+          signatureImg.src = imgPath || 'images/blood_spatter.png';
+          signatureContainer.classList.add('blood');
+          mortalIdField.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+      });
+    };
 
-        // Function to show custom alert with a specific message
-        function showAlert(message) {
-            var alertBox = document.getElementById('validation-alert');
-            var alertMessage = document.getElementById('alert-message');
-            alertMessage.textContent = message;
-            alertBox.style.display = 'block';
-        }
+    // Alerts + submit
+    function showAlert(message) {
+      var alertBox = document.getElementById('validation-alert');
+      var alertMessage = document.getElementById('alert-message');
+      alertMessage.textContent = message;
+      alertBox.style.display = 'block';
+    }
+    document.getElementById('close-validation-alert').addEventListener('click', function() {
+      document.getElementById('validation-alert').style.display = 'none';
+    });
+    document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var characterName = document.getElementById('character-name').value;
+      var mortalId = document.getElementById('mortal-id').value;
+      if (!characterName) return showAlert("Please select your character.");
+      if (!mortalId)     return showAlert("Please enter your Mortal ID.");
 
-        // Close the custom alert when clicking the "Close" button
-        document.getElementById('close-validation-alert').addEventListener('click', function() {
-            document.getElementById('validation-alert').style.display = 'none';
-        });
+      var customAlert = document.getElementById('custom-alert');
+      customAlert.style.display = 'block';
 
-        document.getElementById('rsvp-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+      var bloodSpatter = document.getElementById('blood-spatter');
+      bloodSpatter.classList.remove('fade-hidden');
+      bloodSpatter.classList.add('fade-visible');
 
-            // Retrieve values from the form fields
-            var characterName = document.getElementById('character-name').value;
-            var mortalId = document.getElementById('mortal-id').value;
-
-            // Check if both fields are filled
-            if (!characterName) {
-                showAlert("Please select your character.");
-                return; // Prevent submission if character is not selected
-            }
-            
-            if (!mortalId) {
-                showAlert("Please enter your Mortal ID.");
-                return; // Prevent submission if Mortal ID is empty
-            }
-
-            // Show the custom modal once validation is passed
-            var customAlert = document.getElementById('custom-alert');
-            customAlert.style.display = 'block';
-
-            // Display the blood spatter effect
-            var bloodSpatter = document.getElementById('blood-spatter');
-            bloodSpatter.classList.remove('fade-hidden');
-            bloodSpatter.classList.add('fade-visible');
-
-            // Prepare email template parameters
-            var templateParams = {
-                character_name: characterName, // Pass selected character
-                mortal_id: mortalId,           // Include Mortal ID
-                message: 'RSVP to Malachar\'s Gathering'
-            };
-
-            // Send the email using EmailJS
-            emailjs.send('service_8mr8hwu', 'template_6wow1zn', templateParams)
-            .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-            }, function(error) {
-                console.log('FAILED...', error);
-            });
-
-        });
-
-        document.getElementById('close-alert').addEventListener('click', function() {
-            var customAlert = document.getElementById('custom-alert');
-            customAlert.style.display = 'none';
-        });
-
-    </script>
+      var templateParams = { character_name: characterName, mortal_id: mortalId, message: "RSVP to Malachar's Gathering" };
+      emailjs.send('service_8mr8hwu', 'template_6wow1zn', templateParams)
+        .then(resp => console.log('SUCCESS!', resp.status, resp.text))
+        .catch(err  => console.log('FAILED...', err));
+    });
+    document.getElementById('close-alert').addEventListener('click', function() {
+      document.getElementById('custom-alert').style.display = 'none';
+    });
+  </script>
 
 </body>
 </html>
