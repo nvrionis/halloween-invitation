@@ -1,0 +1,212 @@
+/* General reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Body styling */
+body {
+  background-color: #0a0a0a; /* Deep black background */
+  color: #ff3333;            /* Blood-red text */
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  padding: 50px;
+}
+
+/* Main container */
+#container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: rgba(0,0,0,0.85);
+  border: 2px solid #660000;
+  box-shadow: 0 0 30px rgba(255,0,0,0.5);
+}
+
+/* Blood-red text animation */
+.blood-text-container span {
+  opacity: 0;
+  animation: fadeInLetter 0.75s forwards;
+  animation-delay: var(--delay);
+}
+@keyframes fadeInLetter { to { opacity: 1; } }
+
+/* Blood-text styling */
+.blood-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem; /* a hair smaller to harmonize with narrower dropdown */
+  color: #ff3333;
+  text-shadow: 0 0 10px #ff0000;
+  display: inline-block;
+  opacity: 0;
+  animation: bloodLetterReveal 6s ease-in-out forwards;
+  animation-delay: var(--delay);
+}
+@keyframes bloodLetterReveal { 0%{opacity:0} 100%{opacity:1} }
+
+/* Form */
+#rsvp-form { margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
+
+input {
+  font-family: 'Great Vibes', cursive;
+  padding: 10px;
+  border: 2px solid #660000;
+  border-radius: 10px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+}
+input::placeholder { color: #660000; }
+
+/* Buttons */
+button {
+  background-color: #660000; color: #ffffff;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.4rem;
+  padding: 10px 20px;
+  border: 2px solid #330000;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+button:hover { background-color: #990000; color: #ffcccc; }
+
+/* Blood Spatter Image */
+#blood-spatter {
+  position: fixed; width: 150px; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity 0.5s ease;
+}
+.fade-hidden { opacity: 0; pointer-events: none; }
+.fade-visible { opacity: 1; pointer-events: all; }
+
+/* "Your Mortal ID" */
+#mortal-id {
+  padding: 10px; background-color: #1a1a1a; color: #ffffff; font-size: 1.2rem;
+  border: 2px solid #660000; border-radius: 10px;
+  font-family: 'Great Vibes', cursive; text-align: center; margin-top: 15px;
+}
+
+/* Hide elements by default */
+.signature-hidden { display: none; }
+
+/* Signature container */
+#signature-container {
+  width: 200px; height: 200px; position: relative; margin: 20px auto; background: none;
+}
+#signature-container.blood {
+  background: url('images/blood_spatter.png') no-repeat center center;
+  background-size: 240px 240px;
+}
+#signature-img {
+  width: 60px; height: 60px; display: block; background: none;
+  position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);
+}
+
+/* Mobile-friendly tweaks */
+@media only screen and (max-width: 600px) {
+  body { padding: 20px; }
+  #rsvp-form { padding: 10px; gap: 10px; }
+  input, button { font-size: 1rem; padding: 8px; }
+  button { padding: 8px 16px; }
+}
+@media only screen and (max-width: 400px) {
+  #signature-container { width: 120px; height: 120px; }
+  #signature-container.blood { background-size: 120px 120px; }
+  #signature-img { width: 50px; height: 50px; }
+}
+
+/* Custom modals */
+#custom-alert, #validation-alert {
+  display: none; position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(10,10,10,0.9);
+  color: #ff3333; padding: 30px;
+  border: 2px solid #660000; border-radius: 10px;
+  box-shadow: 0 0 30px rgba(255,0,0,0.5);
+  text-align: center; font-family: 'Great Vibes', cursive; font-size: 1.4rem; z-index: 1000;
+}
+#custom-alert h2, #validation-alert h2 { color: #ff3333; margin-bottom: 20px; }
+#custom-alert button, #validation-alert button {
+  background-color: #660000; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;
+  font-family: 'Great Vibes', cursive; font-size: 1.4rem;
+}
+#custom-alert button:hover, #validation-alert button:hover { background-color: #990000; }
+
+/* Cursors */
+html, body { cursor: url('images/cursor_general.png') 16 16, auto !important; }
+a:hover, button:hover, [role="button"]:hover { cursor: url('images/cursor_action.png') 16 16, pointer !important; }
+
+/* =========================
+   Custom dropdown & tooltip
+   ========================= */
+
+/* Keep the real <select> for submission but hide visually */
+.hidden-select { position: absolute; left: -9999px; width: 1px; height: 1px; }
+
+/* Wrapper (narrower than form; centered) */
+.dropdown-wrap {
+  position: relative;
+  margin: 0 auto 12px;
+  width: 86%;
+  max-width: 250px;
+}
+
+/* Smaller, elegant trigger */
+.dropdown-trigger {
+  width: 100%;
+  text-align: center;
+  background-color: #660000;
+  border: 2px solid #330000;
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.35rem;   /* smaller */
+  letter-spacing: .5px;
+  text-transform: none; /* not all caps */
+}
+
+/* Floating list */
+.dropdown-list {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0; right: 0;
+  max-height: 260px;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border: 2px solid #330000;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255,0,0,0.25);
+  z-index: 2000;
+}
+.dropdown-list.open { display: block; }
+
+/* Items */
+.dropdown-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 14px; color: #ffcccc; font-family: 'Cinzel', serif;
+}
+.dropdown-item:hover { background: #330000; }
+.dropdown-item .item-name { font-weight: 700; }
+
+/* Hide inline Class/Subclass; tooltip will show it */
+.dropdown-item .item-meta { display: none !important; }
+
+/* Tooltip (tight near cursor) */
+.class-tooltip{
+  position: fixed;          /* <-- key change */
+  pointer-events: none;
+  background: rgba(102,0,0,.95);
+  color: #ffcccc;
+  padding: 4px 8px;
+  font-size: .9rem;
+  line-height: 1;
+  border: 1px solid #330000;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(255,0,0,.3);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .1s ease, transform .1s ease;
+  z-index: 9999;
+}
