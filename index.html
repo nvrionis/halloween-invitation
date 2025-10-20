@@ -342,17 +342,13 @@
         }
 
         // Move to a new random position every 8.5 s
-        setInterval(moveSkullSmoothly, 8500);
+        // First move after 1 second, then every 8 seconds afterwards
+        setTimeout(() => {
+        moveSkullSmoothly();                // first move (after 1s)
+        setInterval(moveSkullSmoothly, 8000); // subsequent moves every 8s
+        }, 1000);
 
 
-
-
-        [whisperingSkull, muteSkull].forEach(el => {
-        el.tabIndex = 0; el.setAttribute('role','button');
-        el.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleSound(); }
-        });
-        });
 
         /**** RSVP BUTTON FUNCTIONALITY ****/
         var rsvpButton = document.getElementById('rsvp-button');
